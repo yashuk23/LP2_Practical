@@ -1,6 +1,6 @@
-// In this code selection Sort is implemented as well as Prims Algorithm for Exam There is any One
+// In this code selection Sort is implemented 
 import java.util.*;
-class GreedyAlgo
+class SelectionSort
 {
     public static void selectionSort(int nums[])
     {
