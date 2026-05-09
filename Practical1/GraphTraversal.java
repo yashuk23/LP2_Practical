@@ -1,6 +1,6 @@
 //DFS is implemented using Recurrsion as well as Using Stack , use Recurrsive Solution as mentioned in Problem Statement
 import java.util.*;
-class practical1
+class GraphTraversal
 {
     // dfs Using Recurrsion
     public static List<Integer> dfsRecurrsive(int startNode,List<List<Integer>>adj,boolean vis[],List<Integer> ans)

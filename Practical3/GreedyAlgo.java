@@ -1,6 +1,6 @@
 // In this code selection Sort is implemented as well as Prims Algorithm for Exam There is any One
 import java.util.*;
-class Practical3
+class GreedyAlgo
 {
     public static void selectionSort(int nums[])
     {
