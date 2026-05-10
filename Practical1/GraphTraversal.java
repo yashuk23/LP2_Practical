@@ -93,7 +93,6 @@ class GraphTraversal
                 }
             }
         }
-
         return ans;
     }
 
