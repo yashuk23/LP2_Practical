@@ -1,8 +1,8 @@
-//DFS is implemented using Recurrsion as well as Using Stack , use Recurrsive Solution as mentioned in Problem Statement
+//Refer the solution using recurrsion as mentioned in problem statement
 import java.util.*;
 class GraphTraversal
 {
-    // dfs Using Recurrsion
+    // DFS Using Recurrsion
     public static List<Integer> dfsRecurrsive(int startNode,List<List<Integer>>adj,boolean vis[],List<Integer> ans)
     {
         ans.add(startNode);
@@ -17,6 +17,27 @@ class GraphTraversal
         }
         return ans;
     }
+
+    //BFS using Recurrsion 
+    public static List<Integer> bfsRecurrsive(Queue<Integer> q,List<List<Integer>> adj,boolean vis[],List<Integer> ans)
+    {
+        if(q.isEmpty())return ans;
+
+        int data=q.poll();
+        ans.add(data);
+
+        for(int i:adj.get(data))
+        {
+            if(!vis[i])
+            {
+                q.offer(i);
+                vis[i]=true;
+            }
+        }
+
+        return bfsRecurrsive(q,adj,vis,ans);
+    }
+
 
     //dfs Using Stack Datastructure
     public static List<Integer> dfs(int startNode,List<List<Integer>> adj)
@@ -90,7 +111,10 @@ class GraphTraversal
         for(int i=0;i<nodes;i++)
         {
             adj.add(new ArrayList<>());
+        }
 
+        for(int i=0;i<nodes;i++)
+        {
             System.out.print("\nEnter the number of edges to "+i+" Node : ");
             int edges=sn.nextInt();
 
@@ -108,11 +132,23 @@ class GraphTraversal
         sn.close();
 
         // dfsResult=dfs(startNode,adj);
-        bfsResult=bfsTraversal(startNode,adj);
+        // bfsResult=bfsTraversal(startNode,adj);
+
 
         List<Integer> ans=new ArrayList<>();
-        boolean vis[]=new boolean[adj.size()];
-        dfsResult=dfsRecurrsive(startNode,adj,vis,ans);
+        boolean vis1[]=new boolean[adj.size()];
+
+        dfsResult=dfsRecurrsive(startNode,adj,vis1,ans);
+
+        Queue<Integer> q=new LinkedList<>();
+        boolean vis2[]=new boolean[adj.size()];
+        List<Integer> res=new ArrayList<>();
+
+        q.offer(startNode);
+        vis2[startNode]=true;
+
+        bfsResult=bfsRecurrsive(q,adj,vis2,res);
+
 
         System.out.print("\ndfs Traversal of Graph : "+dfsResult);
         System.out.print("\nBFS Traversal of Graph : "+bfsResult);
