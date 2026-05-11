@@ -3,13 +3,15 @@ import java.util.*;
 class Node
 {
     int x, y, g, h;
+    Node parent;
 
-    Node(int x,int y,int g,int h)
+    Node(int x,int y,int g,int h,Node parent)
     {
         this.x=x;
         this.y=y;
         this.g=g;
         this.h=h;
+        this.parent=parent;
     }
 
     int f()
@@ -32,6 +34,27 @@ class AStar
         return min;
     }
 
+    public static void printPath(Node endNode)
+    {
+        List<String> path=new ArrayList<>();
+
+        Node curr=endNode;
+
+        while(curr!=null)
+        {
+            path.add("("+curr.x+","+curr.y+")");
+            curr=curr.parent;
+        }
+
+        Collections.reverse(path);
+
+        System.out.print("\nPath: ");
+        for(String i:path)
+        {
+            System.out.print(i+" ");
+        }
+    }
+
     public static int astar(int grid[][],int startX,int startY,int endX,int endY)
     {
         int m=grid.length;
@@ -41,7 +64,7 @@ class AStar
 
         List<Node> open=new ArrayList<>();
 
-        open.add(new Node(startX,startY,0,Math.abs(endX-startX)+Math.abs(endY-startY)));
+        open.add(new Node(startX,startY,0,Math.abs(endX-startX)+Math.abs(endY-startY),null));
 
         int row[]={-1,0,1,0};
         int col[]={0,1,0,-1};
@@ -52,8 +75,11 @@ class AStar
 
             open.remove(curr);
 
-            if(curr.x==endX && curr.y==endY)return curr.g;
-
+            if(curr.x==endX && curr.y==endY)
+            {
+                printPath(curr);
+                return curr.g;
+            }
             if(vis[curr.x][curr.y])continue;
 
             vis[curr.x][curr.y]=true;
@@ -67,7 +93,7 @@ class AStar
                 {
                     int newG=curr.g+1;
                     int newH=Math.abs(endX-newX)+Math.abs(endY-newY);
-                    open.add(new Node(newX,newY,newG,newH));
+                    open.add(new Node(newX,newY,newG,newH,curr));
                 }
             }
         }
@@ -92,13 +118,28 @@ class AStar
             }
         }
 
-        sn.close();
+        System.out.print("\n Enter the starting X coordinate : ");
+        int x1=sn.nextInt();
 
-        int m=grid.length;
-        int n=grid[0].length;
+        System.out.print("\n Enter the starting Y coordinate : ");
+        int y1=sn.nextInt();
 
-        int ans=astar(grid,0,0,m-1,n-1);
+        System.out.print("\n Enter the ending X coordinate : ");
+        int x2=sn.nextInt();
 
-        System.out.print("\nShortest Path Cost = " + ans);
+        System.out.print("\n Enter the ending X coordinate : ");
+        int y2=sn.nextInt();
+
+
+        int ans=astar(grid,x1,y1,x2-1,y2-1);
+
+        if(ans==-1)
+        {
+            System.out.print("\nNo Path Exist ");
+        }
+        else
+        {
+            System.out.print("\nShortest Path Cost = " + ans);
+        }
     }
 }

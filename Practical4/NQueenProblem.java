@@ -11,7 +11,6 @@ class NQueenProblem
                 board[row][col]='Q';
                 if(nQueen(board,row+1,n))
                 {
-                    
                     return true;
                 }
                 board[row][col]='.';
