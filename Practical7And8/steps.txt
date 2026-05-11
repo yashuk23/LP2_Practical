@@ -1,0 +1,37 @@
+STEPS TO IMPLEMENT CALCULATOR APPLICATION USING SALESFORCE CLOUD
+
+1. Login to Salesforce.
+
+2. Open Setup.
+
+3. Go to Apex Classes.
+
+4. Click on New.
+
+5. Write the Apex calculator code.
+
+6. Save the Apex Class with the name:
+   CalculatorController
+
+7. Go to Visualforce Pages.
+
+8. Click on New.
+
+9. Enter the Visualforce Page name:
+   CalculatorPage
+
+10. Write the Visualforce Page code.
+
+11. Save the page.
+
+12. Click on Preview to execute the application.
+
+13. Enter two numbers.
+
+14. Click on:
+    - Add
+    - Subtract
+    - Multiply
+    - Divide
+
+15. View the result displayed on the screen.
