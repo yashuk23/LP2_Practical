@@ -130,7 +130,6 @@ class AStar
         System.out.print("\n Enter the ending X coordinate : ");
         int y2=sn.nextInt();
 
-
         int ans=astar(grid,x1,y1,x2-1,y2-1);
 
         if(ans==-1)

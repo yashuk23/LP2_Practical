@@ -1,56 +1,64 @@
 import java.util.*;
 class NQueenProblem
 {
-    public static boolean nQueen(char board[][],int row,int n)
+    public static boolean nQueen(char grid[][],int row,int n,int queen)
     {
-        if(row==n)return true;
+        if(queen==0)return true;
+        if(row==n)return false;
+
         for(int col=0;col<n;col++)
         {
-            if(isSafe(board,row,col,n))
+            if(isSafe(grid,row,col,n))
             {
-                board[row][col]='Q';
-                if(nQueen(board,row+1,n))
+                grid[row][col]='Q';
+                if(nQueen(grid,row+1,n,queen-1))
                 {
                     return true;
                 }
-                board[row][col]='.';
+                grid[row][col]='.';
             }
         }
+
+        if(nQueen(grid,row+1,n,queen))
+        {
+            return true;
+        }
+
         return false;
     }
 
-    public static boolean isSafe(char board[][],int row,int col,int n)
+    public static boolean isSafe(char grid[][],int row,int col,int n)
     {
         for(int i=0;i<n;i++)
         {
-            if(board[row][i]=='Q')return false;
+            if(grid[row][i]=='Q')return false;
         }
 
         for(int i=0;i<n;i++)
         {
-            if(board[i][col]=='Q')return false;
+            if(grid[i][col]=='Q')return false;
         }
 
         for(int i=row-1,j=col-1;i>=0 && j>=0;i--,j--)
         {
-            if(board[i][j]=='Q')return false;
+            if(grid[i][j]=='Q')return false;
         }
 
-        for(int i=row-1,j=col+1;i>=0 && j<n;i--,j++)
+        for(int i=row-1,j=col+1;i>=0 && j<n ;i--,j++)
         {
-            if(board[i][j]=='Q')return false;
+            if(grid[i][j]=='Q')return false;
         }
 
         return true;
     }
 
-    public static void printBoard(char board[][],int n)
+    public static void printBoard(char grid[][],int n)
     {
         for(int i=0;i<n;i++)
         {
             for(int j=0;j<n;j++)
             {
-                System.out.print(board[i][j]+" ");
+                System.out.print(grid[i][j]+" ");
             }
             System.out.println();
         }
@@ -59,25 +67,24 @@ class NQueenProblem
     public static void main(String args[])
     {
         Scanner sn=new Scanner(System.in);
-        System.out.print("\nEnter the size of the board  :  ");
+        System.out.print("\nEnter the size of Grid : ");
         int n=sn.nextInt();
 
-        sn.close();
-
-        char board[][]=new char[n][n];
+        char grid[][]=new char[n][n];
 
         for(int i=0;i<n;i++)
         {
-            Arrays.fill(board[i],'.');
+            Arrays.fill(grid[i],'.');
         }
 
-        if(nQueen(board,0,n))
+        System.out.print("\nEnter the number of Queens to be placed : ");
+        int queen=sn.nextInt();
+
+        boolean res=nQueen(grid,0,n,queen);
+
+        if(res)
         {
-            printBoard(board,n);
-        }
-        else
-        {
-            System.out.print("\n No Solution ");
+            printBoard(grid,n);
         }
     }
 }
