@@ -77,13 +77,28 @@ class AStar
 
     public static void main(String args[])
     {
-        int grid[][]={{0,0,0,1,0},{0,0,1,1,0},{0,0,0,0,0},{0,0,1,1,0},{0,0,0,1,0}};
+        Scanner sn=new Scanner(System.in);
+        System.out.print("\nEnter the size of grid  : ");
+        int size=sn.nextInt();
+
+        int grid[][]=new int[size][size];
+
+        for(int i=0;i<size;i++)
+        {
+            System.out.print("\nEnter the "+(i+1)+" row in Maze Problem : ");
+            for(int j=0;j<size;j++)
+            {
+                grid[i][j]=sn.nextInt();
+            }
+        }
+
+        sn.close();
 
         int m=grid.length;
         int n=grid[0].length;
 
         int ans=astar(grid,0,0,m-1,n-1);
 
-        System.out.println("Shortest Path Cost = " + ans);
+        System.out.print("\nShortest Path Cost = " + ans);
     }
 }

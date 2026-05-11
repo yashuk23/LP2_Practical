@@ -1,5 +1,4 @@
 import java.util.*;
-
 class Chatbot
 {
     public static void main(String args[])
@@ -54,7 +53,6 @@ class Chatbot
                 System.out.println("Bot: Sorry, I didn't understand your query.");
             }
         }
-
         sc.close();
     }
 }
