@@ -44,31 +44,39 @@ class PrimsAlgo
         return totalWt;
     }
 
-    public static void main(String [] args)
+       public static void main(String args[])
     {
-        int V = 4;
+        Scanner sn=new Scanner(System.in);
 
-        List<List<Edge>> graph = new ArrayList<>();
+        System.out.print("Enter Number of Vertices : ");
+        int V=sn.nextInt();
 
-        for (int i = 0; i < V; i++) 
+        System.out.print("Enter Number of Edges : ");
+        int E=sn.nextInt();
+
+        List<List<Edge>> graph=new ArrayList<>();
+
+        for(int i=0;i<V;i++)
         {
             graph.add(new ArrayList<>());
         }
 
-        graph.get(0).add(new Edge(1, 10));
-        graph.get(0).add(new Edge(2, 15));
+        System.out.println("\nEnter Source Destination Weight");
 
-        graph.get(1).add(new Edge(0, 10));
-        graph.get(1).add(new Edge(3, 12));
+        for(int i=0;i<E;i++)
+        {
+            int u=sn.nextInt();
+            int v=sn.nextInt();
+            int wt=sn.nextInt();
 
-        graph.get(2).add(new Edge(0, 15));
-        graph.get(2).add(new Edge(3, 10));
+            graph.get(u).add(new Edge(v,wt));
+            graph.get(v).add(new Edge(u,wt));
+        }
 
-        graph.get(3).add(new Edge(1, 12));
-        graph.get(3).add(new Edge(2, 10));
+        int ans=prims(graph,V);
 
-        int ans = prims(graph, V);
+        System.out.println("\nMinimum Cost of MST = "+ans);
 
-        System.out.println("Minimum Cost of MST = " + ans);
+        sn.close();
     }
 }
